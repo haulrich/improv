@@ -19,6 +19,11 @@ if (have_posts() ) { while (have_posts()) { the_post(); ?>
         dynamic_sidebar('block-r');
         ?>
     </section>
+    <?php elseif(is_page('bestuur') || is_page('board')) : ?>
+        <section class="boardmembers">
+            <?php dynamic_sidebar('board-members'); ?>
+        </section>
+        <?php dynamic_sidebar('board-details'); ?>
     <?php endif;
 }}
 get_footer();

@@ -9,31 +9,29 @@
 </head>
 <body <?php body_class(); ?>>
 <header class="container-fluid">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <a href="<?php echo home_url(); ?>">
-                    <?php dynamic_sidebar('logo'); ?>
-                    <h1 class="title-desc">
-                        <?php echo get_bloginfo('name'); ?>
-                        <span><?php echo get_bloginfo('description'); ?></span>
-                    </h1>
-                </a>
-            </div>
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2 my-lg-2">
+            <a class="masthead" href="<?php echo home_url(); ?>">
+                <?php dynamic_sidebar('logo'); ?>
+                <h1 class="title-desc">
+                    <?php echo get_bloginfo('name'); ?>
+                    <span><?php echo get_bloginfo('description'); ?></span>
+                </h1>
+            </a>
         </div>
-        <div class="row">
-            <div class="col-12">
-                <nav class="header-menu" role="navigation">
-                    <?php wp_nav_menu(array(
-                        'container'       => false,
-                        'fallback_cb'     => false,
-                        'items_wrap'      => '<ul>%3$s</ul>',
-                    )); ?>
-                    <ul>
-                        <?php pll_the_languages(array('show_flags' => 1,'show_names' => 0)); ?>
-                    </ul>
-                </nav>
-            </div>
+    </div>
+    <div class="row shadow-top">
+        <div class="col-lg-8 offset-lg-2">
+            <nav class="header-menu" role="navigation">
+                <?php wp_nav_menu(array(
+                    'container'       => false,
+                    'fallback_cb'     => false,
+                    'items_wrap'      => '<ul>%3$s</ul>',
+                )); ?>
+                <ul>
+                    <?php pll_the_languages(array('show_flags' => 1,'show_names' => 0)); ?>
+                </ul>
+            </nav>
         </div>
     </div>
 </header>
@@ -41,7 +39,8 @@
     <?php dynamic_sidebar('fixed-photo'); ?>
 <?php endif; ?>
 <main class="container-fluid" id="site-content" role="main">
-    <div class="container">
-        <nav class="breadcrumb" aria-label="breadcrumbs">
+    <div class="row">
+    <div class="col-lg-8 offset-lg-2">
+        <nav class="breadcrumbs" aria-label="breadcrumbs">
             <?php if (function_exists('yoast_breadcrumb') ) {yoast_breadcrumb();} ?>
         </nav>
