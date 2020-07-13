@@ -110,6 +110,14 @@ function register_improv_sidebars() {
         'before_title'  => '<h2>',
         'after_title'   => '</h2>',
     ));
+    register_sidebar( array(
+        'name'          => __('Documents', 'improv'),
+        'id'            => 'documents',
+        'before_widget' => '<article class="document">',
+        'after_widget'  => '</article>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>',
+    ));
 }
 add_action('widgets_init', 'register_improv_sidebars');
 
