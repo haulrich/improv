@@ -2,15 +2,37 @@
     </div>
 </main>
 <?php if(is_front_page()) : ?>
-    <section class="instagram">
-        <div class="wrap">
-            <?php echo wdi_feed(array('id'=>'1')); ?>
-        </div>
-    </section>
-<?php endif; ?>
-<footer class="container-fluid">
+<section class="container-fluid bg-dark instagram">
     <div class="row">
-        <div class="col-lg-8 offset-lg-2 d-flex justify-content-between my-4">
+        <div class="col my-4 px-0">
+            <div id="instagram_feed"></div>
+            <script type="text/javascript">
+                /*<![CDATA[*/
+                /*instagram-config7*/
+                (function() {
+                    new InstagramFeed({
+                        'username': 'tsv.prodeo',
+                        'container': document.getElementById('instagram_feed'),
+                        'display_profile': 0,
+                        'display_biography': 0,
+                        'display_gallery': true,
+                        'display_igtv': false,
+                        'callback': null,
+                        'styling': true,
+                        'items': 5,
+                        'items_per_row': 1,
+                        'margin': 0.00
+                    });
+                })();
+                /*]]>*/
+            </script>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+<footer class="container-fluid py-5">
+    <div class="row h-100">
+        <div class="col-lg-8 offset-lg-2 d-flex justify-content-between align-items-center">
             <section>
                 &copy; <?php echo date("Y"); echo ' '; echo bloginfo('name'); ?>
                 <?php $contact_id = pll_current_language() == 'nl' ? 2 : 965 ?>

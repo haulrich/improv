@@ -6,7 +6,7 @@ if (have_posts()) {
     <section class="content">
         <?php the_content(); ?>
     </section>
-    <?php if(is_front_page()) { ?>
+    <?php if(is_front_page()) : ?>
         <section class="blocks">
             <?php
             dynamic_sidebar('block-l');
@@ -14,16 +14,20 @@ if (have_posts()) {
             dynamic_sidebar('block-r');
             ?>
         </section>
-    <?php } elseif(is_page('bestuur') || is_page('board')) { ?>
+    <?php elseif(is_page('planning')) : ?>
+        <section class="planning">
+        </section>
+    <?php elseif(is_page('bestuur') || is_page('board')) : ?>
         <section class="boardmembers">
             <?php dynamic_sidebar('board-members'); ?>
         </section>
         <?php dynamic_sidebar('board-details'); ?>
-    <?php } elseif(is_page('documenten') || is_page('documents')) { ?>
+    <?php elseif(is_page('documenten') || is_page('documents')) : ?>
         <section class="documents">
             <?php dynamic_sidebar('documents'); ?>
             <?php
             ?>
         </section>
-    <?php }}}
+    <?php endif;
+    }}
 get_footer();
