@@ -1,18 +1,19 @@
-@import '_typography.scss';
-@import '_variables.scss';
-@import '_mixins.scss';
+@import '_typography';
+@import '_variables';
+@import '_mixins';
 
 body {
 	@include boxreset();
 	transition: all 2s;
 	background-color: $charcoal;
 	color: white;
-	font-family: 'Barlow Condensed', sans-serif;
+	font-family: 'Barlow', sans-serif;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
 	font-size: 18px;
 	h1, h2, h3, h4, h5, h6 {
+		font-family: 'Barlow Condensed', sans-serif;
 		font-weight: 500;
 	}
 	a {
@@ -33,7 +34,8 @@ body {
 		color: white;
 		box-shadow: 0 0 5px rgba(0,0,0,0.5);
 		&.sticky {
-			//position: fixed;
+			z-index: $z-sticky;
+			position: fixed;
 			top: 0;
 			width: 100%;
 			.wrap {
@@ -80,13 +82,37 @@ body {
 		div.row.shadow-top {
 			box-shadow: 0 -2px 10px lighten($prodeo_red,5%);
 		}
-		nav {
-			display: flex;
+		nav.toggle {
+			@media (min-width: $breakpoint-md) {
+				display: none;
+			}
+			display: block;
+			flex: 1;
+		}
+		nav.header-menu {
+			@media (min-width: $breakpoint-md) {
+				display: flex;
+				flex: 11;
+			}
+			font-family: 'Barlow Condensed', sans-serif;
+			z-index: $z-menu;
+			width: 100%;
+			display: none;
 			flex-flow: row nowrap;
 			justify-content: space-between;
 			a {
 				display: block;
 				padding: $gutter;
+				&.home {
+					@media (max-width: $breakpoint-md) {
+						display: none;
+					}
+					&:before {
+						@include fontawesome;
+						content: '\f015';
+						font-size: 1rem;
+					}
+				}
 			}
 			ul {
 				&, & ul, & ul ul {
@@ -136,7 +162,18 @@ body {
 					}
 				}
 			}
+			&.toggled {
+				display: flex;
+				ul {
+					flex-flow: column nowrap;
+				}
+			}
 		}
+	}
+	section.breadcrumbs {
+		background-color: black;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
 	}
 	section.fixed-photo {
 		z-index: -1;
@@ -148,14 +185,48 @@ body {
 			display: block;
 			object-fit: cover;
 			object-position: center (-$bar * 2);
-			opacity: 0.75;
+			opacity: 0.5;
+		}
+		&:hover {
+			img {
+				opacity: 0.15;
+			}
 		}
 	}
 	main {
+		min-height: 75vh;
 		background-color: white;
 		color: black;
-		margin-top: 30vh;
-		padding: $gutter;
+		padding: 0 $gutter;
+		section.content {
+			padding-top: 1rem;
+			*.masonry {
+				display: flex;
+				flex-flow: column wrap;
+				justify-content: flex-start;
+				margin: 0 (-$gutter * 1.5);
+				article {
+					width: 25% - (4 * $gutter);
+					margin: $gutter ($gutter / 2);
+					padding: $gutter;
+					border-radius: 2px;
+					box-shadow: 0 0 5px 0 rgba(0,0,0,0.25);
+					cursor: pointer;
+					&:hover {
+						box-shadow: 0 0 10px -5px rgba(0,0,0,0.25);
+					}
+					a {
+						p {
+							color: black;
+							text-decoration: none;
+							&:hover {
+								text-decoration: none;
+							}
+						}
+					}
+				}
+			}
+		}
 		section.boardmembers {
 			display: flex;
 			flex-flow: row wrap;
@@ -222,15 +293,94 @@ body {
 	/* VIEWS */
 	&.home {
 		main {
-			margin-top: 60vh - $bar;
-			background-color: $prodeo_red;
+			background-color: unset;
+			margin-top: 10vh;
 			color: white;
+			h2 {
+				text-align: center;
+			}
+			section.content {
+				margin-bottom: 10vh;
+				text-align: center;
+				font-size: 1.5rem;
+				line-height: 200%;
+			}
+			section.blocks {
+				div.block {
+					background-color: $prodeo_red;
+					border-radius: 3px;
+					box-shadow: 0 0 10px rgba(0,0,0,0.5);
+					padding: $gutter;
+					&.block-m {
+						display: flex;
+						flex-flow: column nowrap;
+						overflow-x: hidden;
+						text-align: center;
+					}
+					div.textwidget {
+						min-height: 300px;
+					}
+				}
+			}
 		}
-		section.blocks {
-			display: flex;
-			flex-flow: row nowrap;
-			justify-content: space-between;
-			align-items: flex-start;
+
+	}
+
+	/* AGENDA */
+	#agenda {
+		height: 300px;
+		width: 100%;
+		border: unset;
+		border-radius: unset;
+		background-color: unset;
+		.gcf-header-block {
+			display: none;
+		}
+		.gcf-item-container-block {
+			* {
+				text-shadow: unset;
+			}
+			border: 1px solid rgba(0,0,0,0.2);
+			border-radius: 2px;
+			.gcf-item-block {
+				border: unset;
+				margin: 0;
+				&:nth-child(odd) {
+					background-color: rgba(0,0,0,0.10);
+				}
+				.gcf-item-header-block {
+					display: flex;
+					flex-flow: column-reverse nowrap;
+					color: white;
+					.gcf-item-date-block {
+						color: transparent;
+						font-size: 0;
+						span {
+							color: black;
+							font-size: 1rem;
+						}
+					}
+					.gcf-item-title-block {
+						font-size: 1.25rem;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+	}
+
+	/* GAMES */
+	&.post-type-archive-games {
+		main {
+			section.content {
+				div.search_form {
+					background-color: $prodeo_red;
+					padding: $gutter;
+					margin: $gutter 0;
+					border-radius: 2px;
+				}
+
+			}
 		}
 	}
 }

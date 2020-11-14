@@ -2,9 +2,11 @@
 function wp_styles_scripts() {
     wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', array(), null, 'all');
 	wp_enqueue_style('googlefonts', 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&display=swap', array(), null, 'all');
-    wp_enqueue_style('fontawesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', array(), null, 'all');
-    wp_enqueue_style('main', get_template_directory_uri().'/main.css', array(), null, 'all');
+	wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/solid.min.css', array(), null, 'all');
+    wp_enqueue_style('fontawesome2', 'https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;1,400;1,700&display=swap', array(), null,'all');
+	wp_enqueue_style('main', get_template_directory_uri().'/main.css', array(), null, 'all');
     wp_enqueue_script('instagram', get_template_directory_uri().'/js/instagram.min.js', array(), null, null);
+    wp_enqueue_script('masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', array(), null, null);
     wp_enqueue_script('bootstrap','https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js', array('jquery'), null, null);
     wp_enqueue_script('custom', get_template_directory_uri().'/js/custom.js', array('jquery'), null, null);
 }
@@ -12,6 +14,10 @@ add_action('wp_enqueue_scripts', 'wp_styles_scripts');
 remove_action('wp_head', 'wp_resource_hints', 2);
 add_filter('use_default_gallery_style', '__return_false');
 add_theme_support('title-tag');
+function wpdocs_after_setup_theme() {
+    add_theme_support( 'html5', array( 'search-form' ) );
+}
+add_action( 'after_setup_theme', 'wpdocs_after_setup_theme' );
 
 function extend_body_class($classes)
 {
@@ -74,24 +80,24 @@ function register_improv_sidebars() {
     register_sidebar( array(
         'name'          => __('Home Block Left', 'improv'),
         'id'            => 'block-l',
-        'before_widget' => '<section class="block block-l">',
-        'after_widget'  => '</section>',
+        'before_widget' => '',
+        'after_widget'  => '',
         'before_title'  => '<h2>',
         'after_title'   => '</h2>',
     ));
     register_sidebar( array(
         'name'          => __('Home Block Mid', 'improv'),
         'id'            => 'block-m',
-        'before_widget' => '<section class="block block-m">',
-        'after_widget'  => '</section>',
+        'before_widget' => '',
+        'after_widget'  => '',
         'before_title'  => '<h2>',
         'after_title'   => '</h2>',
     ));
     register_sidebar( array(
         'name'          => __('Home Block Right', 'improv'),
         'id'            => 'block-r',
-        'before_widget' => '<section class="block block-r">',
-        'after_widget'  => '</section>',
+        'before_widget' => '',
+        'after_widget'  => '</div></section>',
         'before_title'  => '<h2>',
         'after_title'   => '</h2>',
     ));
@@ -253,6 +259,36 @@ function add_cpt_games() {
                 'slug' => 'game',
                 'with_front' => true,
                 ),
+            'delete_with_user' => false,
+        )
+    );
+    register_post_type( 'services',
+        array(
+            'labels' => array(
+                'name'                => __( 'Services', 'Post Type General Name', 'improv' ),
+                'singular_name'       => __( 'Service', 'Post Type Singular Name', 'improv' ),
+                'menu_name'           => __( 'Services', 'improv' ),
+                'parent_item_colon'   => __( 'Referral Service', 'improv' ),
+                'all_items'           => __( 'All Services', 'improv' ),
+                'view_item'           => __( 'View Service', 'improv' ),
+                'add_new_item'        => __( 'Add New Service', 'improv' ),
+                'add_new'             => __( 'Add New', 'improv' ),
+                'edit_item'           => __( 'Edit Service', 'improv' ),
+                'update_item'         => __( 'Update Service', 'improv' ),
+                'search_items'        => __( 'Search Service', 'improv' ),
+                'not_found'           => __( 'Not Found', 'improv' ),
+                'not_found_in_trash'  => __( 'Not found in Trash', 'improv' ),
+            ),
+            'description' => 'Services',
+            'public' => true,
+            'menu_icon' => 'dashicons-format-status',
+            'supports' => array('title','excerpt','editor','revisions','custom-fields'),
+            'taxonomies' => array('tag'),
+            'has_archive' => 'services',
+            'rewrite' => array(
+                'slug' => 'service',
+                'with_front' => true,
+            ),
             'delete_with_user' => false,
         )
     );

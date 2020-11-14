@@ -1,3 +1,10 @@
+/* BREAKPOINTS */
+$breakpoint-xs: 0;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
 /* DIMENSIONS */
 $gutter: 15px;
 $bar: 4 * $gutter;
@@ -5,3 +12,7 @@ $bar: 4 * $gutter;
 /* COLORS */
 $prodeo_red: #D74141;
 $charcoal: #23282D;
+
+/* Z-INDEXES */
+$z-menu: 1;
+$z-sticky: 11;

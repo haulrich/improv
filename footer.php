@@ -3,8 +3,9 @@
 </main>
 <?php if(is_front_page()) : ?>
 <section class="container-fluid bg-dark instagram">
-    <div class="row">
-        <div class="col my-4 px-0">
+    <div class="container">
+        <div class="row">
+        <div class="col-12 col-xs-10 offset-xs-1 my-4">
             <div id="instagram_feed"></div>
             <script type="text/javascript">
                 /*<![CDATA[*/
@@ -27,6 +28,7 @@
                 /*]]>*/
             </script>
         </div>
+    </div>
     </div>
 </section>
 <?php endif; ?>
