@@ -11,13 +11,13 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
-	font-size: 18px;
+	font-size: 11.5pt;
 	h1, h2, h3, h4, h5, h6 {
 		font-family: 'Barlow Condensed', sans-serif;
 		font-weight: 500;
 	}
 	a {
-		&, &:active, &:visited {
+		&, &:hover, &:active, &:visited {
 			color: $prodeo_red;
 			text-decoration: none;
 		}
@@ -74,7 +74,7 @@ body {
 				display: flex;
 				flex-flow: column nowrap;
 				span {
-					font-size: 0.8rem;
+					font-size: 1.2rem;
 					color: $charcoal;
 				}
 			}
@@ -199,7 +199,7 @@ body {
 		padding: 0 $gutter;
 		section.content {
 			padding: 2rem 0;
-			aside {
+			aside.ruler {
 				opacity: 0.25;
 			}
 			article {
@@ -338,11 +338,9 @@ body {
 							background: white;
 							margin: 0 0 $gutter 0;
 							padding: $gutter;
-							border-radius: 2px;
+							border-radius: 3px;
 							box-shadow: 0 0 5px 0 rgba(0,0,0,0.25);
 							break-inside: avoid;
-							//opacity: 0.9;
-							//transition: opacity 0.2s;
 							a {
 								color: black;
 								text-decoration: none;
@@ -351,8 +349,6 @@ body {
 								}
 							}
 							&:hover {
-								//opacity: 1;
-								//transition: opacity 0.2s;
 								box-shadow: 0 0 10px -5px rgba(255,255,255,0.5);
 							}
 						}
@@ -360,47 +356,74 @@ body {
 				}
 			}
 		}
-
-	/* AGENDA */
-	#agenda {
-		height: 300px;
-		width: 100%;
-		border: unset;
-		border-radius: unset;
-		background-color: unset;
-		.gcf-header-block {
-			display: none;
-		}
-		.gcf-item-container-block {
-			* {
-				text-shadow: unset;
+		/* News */
+		article.news,
+		article.nieuws {
+			background-color: white;
+			color: $charcoal;
+			border-radius: 3px;
+			padding: $gutter;
+			margin: 0 0 $gutter 0;
+			img.wp-post-image {
+				height: 100%;
+				max-width: 10vw;
+				border: 3px solid white;
+				border-radius: 2px;
+				object-fit: contain;
+				object-position: center;
 			}
-			border: 1px solid rgba(0,0,0,0.2);
-			border-radius: 2px;
-			.gcf-item-block {
-				border: unset;
-				margin: 0;
-				&:nth-child(odd) {
-					background-color: rgba(0,0,0,0.10);
+		}
+		/* Contact */
+		aside.maps {
+			figure.map {
+				iframe {
+					width: 100%;
+					min-height: 20rem;
 				}
-				.gcf-item-header-block {
-					display: flex;
-					flex-flow: column-reverse nowrap;
-					color: white;
-					.gcf-item-date-block {
-						color: transparent;
-						font-size: 0;
-						span {
-							color: black;
-							font-size: 1rem;
+			}
+		}
+
+	/* PARTIALS */
+		/* Agenda */
+		#agenda {
+			height: 300px;
+			width: 100%;
+			border: unset;
+			border-radius: unset;
+			background-color: unset;
+			.gcf-header-block {
+				display: none;
+			}
+			.gcf-item-container-block {
+				* {
+					text-shadow: unset;
+				}
+				border: 1px solid rgba(0,0,0,0.2);
+				border-radius: 2px;
+				.gcf-item-block {
+					border: unset;
+					margin: 0;
+					&:nth-child(odd) {
+						background-color: rgba(0,0,0,0.10);
+					}
+					.gcf-item-header-block {
+						display: flex;
+						flex-flow: column-reverse nowrap;
+						color: white;
+						.gcf-item-date-block {
+							color: transparent;
+							font-size: 0;
+							span {
+								color: black;
+								font-size: 1rem;
+							}
+						}
+						.gcf-item-title-block {
+							font-size: 1.25rem;
+							font-weight: bold;
 						}
 					}
-					.gcf-item-title-block {
-						font-size: 1.25rem;
-						font-weight: bold;
-					}
 				}
 			}
 		}
-	}
 }

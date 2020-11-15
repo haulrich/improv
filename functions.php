@@ -14,6 +14,7 @@ add_action('wp_enqueue_scripts', 'wp_styles_scripts');
 remove_action('wp_head', 'wp_resource_hints', 2);
 add_filter('use_default_gallery_style', '__return_false');
 add_theme_support('title-tag');
+add_theme_support('post-thumbnails');
 function wpdocs_after_setup_theme() {
     add_theme_support( 'html5', array( 'search-form' ) );
 }
@@ -110,18 +111,18 @@ function register_improv_sidebars() {
         'after_title'   => '</h3>',
     ));
     register_sidebar( array(
-        'name'          => __('Board Details', 'improv'),
-        'id'            => 'board-details',
-        'before_widget' => '<section class="board-details">',
-        'after_widget'  => '</section>',
-        'before_title'  => '<h2>',
-        'after_title'   => '</h2>',
-    ));
-    register_sidebar( array(
         'name'          => __('Documents', 'improv'),
         'id'            => 'documents',
         'before_widget' => '<article class="document">',
         'after_widget'  => '</article>',
+        'before_title'  => '<h2>',
+        'after_title'   => '</h2>',
+    ));
+    register_sidebar( array(
+        'name'          => __('Contact Maps', 'improv'),
+        'id'            => 'contact-maps',
+        'before_widget' => '<figure class="map">',
+        'after_widget'  => '</figure>',
         'before_title'  => '<h2>',
         'after_title'   => '</h2>',
     ));
@@ -206,7 +207,7 @@ function add_cpt_games() {
             'description' => 'Game database',
             'public' => true,
             'menu_icon' => 'dashicons-groups',
-            'supports' => array('title','excerpt','editor','revisions','custom-fields'),
+            'supports' => array('title','excerpt','editor','revisions'),
             'taxonomies' => array('soort'),
             'has_archive' => 'games',
             'rewrite' => array('slug' => 'game'),
