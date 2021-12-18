@@ -1,58 +1,99 @@
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>
 <head>
-    <meta charset="<?php bloginfo( 'charset' ); ?>">
+    <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keywords" content="theatersport,prodeo,improv,improvisatie">
     <meta name="theme-color" content="#D74141">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#d2232a">
+    <meta name="msapplication-TileColor" content="#d2232a">
+    <meta name="theme-color" content="#d2232a">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "url": "https://www.prodeo.utwente.nl",
+            "logo": "https://www.prodeo.utwente.nl/logo.png"
+        }
+    </script>
     <script async defer crossorigin="anonymous" src="https://connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v7.0&appId=1538696539739752&autoLogAppEvents=1" nonce="osBQol7B"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-160037129-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-160037129-2');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-KWC6WPG');</script>
+    <!-- End Google Tag Manager -->
+    <?php dynamic_sidebar('scripts-header'); ?>
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
+<?php dynamic_sidebar('scripts-bodystart'); ?>
 
-<header class="container-fluid">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2 my-lg-2">
-            <a class="masthead" href="<?php echo home_url(); ?>">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KWC6WPG"
+                  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+<header class="sticky-top">
+    <div class="d-flex flex-md-column">
+        <div class="container-md order-2 order-md-1 masthead">
+            <a href="<?php echo home_url(); ?>">
                 <?php dynamic_sidebar('logo'); ?>
-                <h1 class="title-desc">
-                    <?php echo get_bloginfo('name'); ?>
-                    <span><?php echo get_bloginfo('description'); ?></span>
+                <h1 class="title-desc d-flex flex-column">
+                    <?php bloginfo('name'); ?>
+                    <span class="d-none d-sm-inline"><?php bloginfo('description'); ?></span>
                 </h1>
             </a>
+            <span class="d-none d-md-flex justify-content-end social">
+                <?php dynamic_sidebar('social'); ?>
+            </span>
+        </div>
+        <div class="container-md-fluid order-1 order-md-1 navhead">
+            <nav class="container navbar navbar-expand-md navbar-dark p-md-0" role="navigation">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="<?php esc_attr_e( 'Toggle navigation', 'improv' ); ?>">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <?php
+                wp_nav_menu( array(
+                    'theme_location'    => 'primary',
+                    'depth'             => 2,
+                    'container'         => 'div',
+                    'container_class'   => 'collapse navbar-collapse',
+                    'container_id'      => 'navbar-collapse',
+                    'menu_class'        => 'nav navbar-nav',
+                    'fallback_cb'       => 'WP_Bootstrap_Navwalker::fallback',
+                    'walker'            => new WP_Bootstrap_Navwalker(),
+                ) );
+                ?>
+            </nav>
         </div>
     </div>
-    <div class="row shadow-top">
-        <div class="col-lg-8 offset-lg-2">
-            <div class="d-flex">
-                <nav class="toggle">
-                    <button></button>
-                </nav>
-                <nav class="header-menu" role="navigation">
-                    <?php wp_nav_menu(array(
-                        'container'       => false,
-                        'fallback_cb'     => false,
-                        'items_wrap'      => '<ul><li><a class="home" href="/"></a></li>%3$s</ul>',
-                    )); ?>
-                    <ul>
-                        <?php pll_the_languages(array('show_flags' => 1,'show_names' => 0)); ?>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+    <?php if (function_exists('yoast_breadcrumb') && !is_front_page()) {
+        echo '<section class="breadcrumbs">';
+        echo '<nav class="container breadcrumbs" aria-label="breadcrumbs">';
+        yoast_breadcrumb();
+        echo '</nav>';
+        echo '</section>';
+    } ?>
 </header>
 <?php if(is_front_page()) : ?>
     <?php dynamic_sidebar('fixed-photo'); ?>
 <?php endif; ?>
-    <?php if (function_exists('yoast_breadcrumb') && !is_front_page()) {
-        echo '<section class="container-fluid breadcrumbs">';
-        echo '<div class="row"><div class="col-lg-8 offset-lg-2"><nav class="breadcrumbs" aria-label="breadcrumbs">';
-        yoast_breadcrumb();
-        echo '</nav></div></div>';
-        echo '</section>';
-    } ?>
+
 <main class="container-fluid" id="site-content" role="main">
-    <div class="row">
-        <div class="col-lg-8 offset-lg-2">
+    <div class="container">
 

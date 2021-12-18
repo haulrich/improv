@@ -1,11 +1,7 @@
-        </div>
     </div>
 </main>
 <?php if(is_front_page()) : ?>
-<section class="container-fluid bg-dark instagram">
-    <div class="container">
-        <div class="row">
-        <div class="col-12 col-xs-10 offset-xs-1 my-4">
+    <section class="container">
             <div id="instagram_feed"></div>
             <script type="text/javascript">
                 /*<![CDATA[*/
@@ -27,28 +23,24 @@
                 })();
                 /*]]>*/
             </script>
-        </div>
-    </div>
-    </div>
-</section>
+    </section>
 <?php endif; ?>
-<footer class="container-fluid py-5">
-    <div class="row h-100">
-        <div class="col-lg-8 offset-lg-2 d-flex justify-content-between align-items-center">
-            <section>
-                &copy; <?php echo date("Y"); echo ' '; echo bloginfo('name'); ?>
-                <?php $contact_id = pll_current_language() == 'nl' ? 2 : 965 ?>
-                - <a href="<?php the_permalink($contact_id); ?>"><?php echo get_the_title($contact_id); ?></a>
-            </section>
-            <?php $avg_id = pll_current_language() == 'nl' ? 3 : 1008 ?>
-            <a href="<?php the_permalink($avg_id); ?>"><?php echo get_the_title($avg_id); ?></a>
-            <section>
-                <?php echo pll_current_language() == 'nl' ? 'Ontwerp en ontwikkeling' : 'Design and development' ?>
-                <a href="https://www.heidiulrich.nl" target="_blank">heidiulrich.nl</a>
-            </section>
-        </div>
+<footer class="container-fluid py-3">
+    <div class="container d-flex flex-column flex-lg-row justify-content-lg-between">
+        <section>
+            &copy; <?php echo date("Y"); echo ' '; echo bloginfo('name'); ?>
+            <?php $contact_id = pll_current_language() == 'nl' ? 2 : 965 ?>
+            - <a href="<?php the_permalink($contact_id); ?>"><?php echo get_the_title($contact_id); ?></a>
+        </section>
+        <?php $avg_id = pll_current_language() == 'nl' ? 3 : 1008 ?>
+        <a href="<?php the_permalink($avg_id); ?>"><?php echo get_the_title($avg_id); ?></a>
+        <section>
+            <?php echo pll_current_language() == 'nl' ? 'Ontwerp en ontwikkeling' : 'Design and development' ?>
+            <a href="https://www.heidiulrich.nl" target="_blank">heidiulrich.nl</a>
+        </section>
     </div>
 </footer>
+<?php dynamic_sidebar('scripts-footer'); ?>
 <?php wp_footer(); ?>
 </body>
 </html>

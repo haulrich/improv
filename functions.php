@@ -1,16 +1,15 @@
 <?php
 function wp_styles_scripts() {
-    wp_enqueue_style('bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css', array(), null, 'all');
-	wp_enqueue_style('googlefonts', 'https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,400;0,500;1,400&display=swap', array(), null, 'all');
-	wp_enqueue_style('fontawesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/solid.min.css', array(), null, 'all');
-    wp_enqueue_style('fontawesome2', 'https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,400;0,700;1,400;1,700&display=swap', array(), null,'all');
+    wp_enqueue_style('bootstrap', get_template_directory_uri().'/lib/bootstrap/css/bootstrap.min.css', array(), null, 'all');
+	wp_enqueue_style('fontawesome', get_template_directory_uri().'/lib/fontawesome/css/all.min.css', array(), null, 'all');
 	wp_enqueue_style('main', get_template_directory_uri().'/css/main.css', array(), null, 'all');
-    wp_enqueue_script('instagram', get_template_directory_uri().'/js/instagram.min.js', array(), null, null);
-    wp_enqueue_script('masonry', 'https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js', array(), null, null);
-    wp_enqueue_script('bootstrap','https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js', array('jquery'), null, null);
+    wp_enqueue_script('instagram', get_template_directory_uri().'/lib/instagram/instagram.min.js', array('jquery'), null, null);
+    wp_enqueue_script('bootstrap', get_template_directory_uri().'/lib/bootstrap/js/bootstrap.min.js', array('jquery'), null, null);
+    wp_enqueue_script('fontawesome',get_template_directory_uri().'/lib/fontawesome/js/all.min.js', array('jquery'), null, null);
     wp_enqueue_script('custom', get_template_directory_uri().'/js/custom.js', array('jquery'), null, null);
 }
 add_action('wp_enqueue_scripts', 'wp_styles_scripts');
+add_filter('xmlrpc_enabled', '__return_false');
 remove_action('wp_head', 'wp_resource_hints', 2);
 add_filter('use_default_gallery_style', '__return_false');
 add_theme_support('title-tag');
@@ -65,6 +64,14 @@ function register_improv_sidebars() {
     register_sidebar( array(
         'name'          => __('Logo', 'improv'),
         'id'            => 'logo',
+        'before_widget' => null,
+        'after_widget'  => null,
+        'before_title'  => null,
+        'after_title'   => null,
+    ));
+    register_sidebar( array(
+        'name'          => __('Social Links', 'improv'),
+        'id'            => 'social',
         'before_widget' => null,
         'after_widget'  => null,
         'before_title'  => null,
@@ -129,15 +136,13 @@ function register_improv_sidebars() {
 }
 add_action('widgets_init', 'register_improv_sidebars');
 
-/* Register Header Menu */
-function wp_menus() {
-    register_nav_menus(
-        array(
-            'header-menu' => __( 'Header Menu' )
-        )
-    );
+function register_navwalker(){
+    require_once get_template_directory().'/class-wp-bootstrap-navwalker.php';
 }
-add_action( 'init', 'wp_menus' );
+add_action('after_setup_theme','register_navwalker');
+register_nav_menus( array(
+    'primary' => __( 'Primary', 'improv' ),
+) );
 
 /* add slugs to admin columns */
 function set_slug_column($columns) {
@@ -160,32 +165,7 @@ add_filter('manage_games_posts_columns', 'set_slug_column');
 add_action( 'manage_games_posts_custom_column', 'slug_in_column', 5, 2);
 
 // Add Custom Post Type 'Games' & Services
-function add_games_soort() {
-    $labels = array(
-        'name'              => _x( 'Soorten', 'taxonomy general name', 'improv' ),
-        'singular_name'     => _x( 'Soort', 'taxonomy singular name', 'improv' ),
-        'search_items'      => __( 'Zoeken in Soorten', 'improv' ),
-        'all_items'         => __( 'Alle Soorten', 'improv' ),
-        'parent_item'       => null,
-        'parent_item_colon' => null,
-        'edit_item'         => __( 'Soort bewerken', 'improv' ),
-        'update_item'       => __( 'Soort bijwerken', 'improv' ),
-        'add_new_item'      => __( 'Soort toevoegen', 'improv' ),
-        'new_item_name'     => __( 'Nieuwe Soortnaam', 'improv' ),
-        'menu_name'         => __( 'Soort', 'improv' ),
-    );
-    $args = array(
-        'hierarchical'      => false,
-        'labels'            => $labels,
-        'show_ui'           => true,
-        'show_admin_column' => true,
-        'update_count_callback' => '_update_post_term_count',
-        'query_var'         => true,
-        'rewrite'           => array('slug' => 'soort'),
-    );
-    register_taxonomy('soort', array('games'), $args);
-}
-add_action( 'init', 'add_games_soort', 0 );
+
 function add_cpt_games() {
     register_post_type('games',
         array(
@@ -210,10 +190,34 @@ function add_cpt_games() {
             'supports' => array('title','excerpt','editor','revisions'),
             'taxonomies' => array('soort'),
             'has_archive' => 'games',
-            'rewrite' => array('slug' => 'game'),
+            'rewrite' => array('slug' => 'game','with_front' => false),
             'delete_with_user' => false,
         )
     );
+    $labels = array(
+        'name'              => _x( 'Type', 'taxonomy general name', 'improv' ),
+        'singular_name'     => _x( 'Type', 'taxonomy singular name', 'improv' ),
+        'search_items'      => __( 'Zoeken in Type', 'improv' ),
+        'all_items'         => __( 'Alle Type', 'improv' ),
+        'parent_item'       => null,
+        'parent_item_colon' => null,
+        'edit_item'         => __( 'Type bewerken', 'improv' ),
+        'update_item'       => __( 'Type bijwerken', 'improv' ),
+        'add_new_item'      => __( 'Type toevoegen', 'improv' ),
+        'new_item_name'     => __( 'Nieuwe Typenaam', 'improv' ),
+        'menu_name'         => __( 'Type', 'improv' ),
+    );
+    $args = array(
+        'hierarchical'      => false,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'gametype'),
+        'has_archive'       => true,
+        'update_count_callback' => '_update_post_term_count',
+        );
+    register_taxonomy('soort', array('games'), $args);
 }
 add_action( 'init', 'add_cpt_games' );
 function add_cpt_services() {
@@ -247,6 +251,7 @@ function add_cpt_services() {
 }
 add_action( 'init', 'add_cpt_services' );
 
+include_once('func_caps.php');
 include_once('func_comments.php');
 include_once('func_emojis.php');
 include_once('func_yoast.php');

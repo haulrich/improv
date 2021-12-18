@@ -8,10 +8,16 @@ $breakpoint-xl: 1200px;
 /* DIMENSIONS */
 $gutter: 15px;
 $bar: 4 * $gutter;
+$dim_header: 70px;
 
 /* COLORS */
-$prodeo_red: #D74141;
-$charcoal: #23282D;
+$white: rgb(255,255,255);
+$black: rgb(0,0,0);
+$ghost: rgb(222,226,230);
+$prodeo_red: rgb(210, 35, 42);
+$burgundy: rgb(147,36,40);
+$salmon: rgb(241,91,64);
+$charcoal: rgb(35,40,45);
 
 /* Z-INDEXES */
 $z-menu: 1;
