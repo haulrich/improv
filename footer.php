@@ -36,7 +36,7 @@
         <a href="<?php the_permalink($avg_id); ?>"><?php echo get_the_title($avg_id); ?></a>
         <section>
             <?php echo pll_current_language() == 'nl' ? 'Ontwerp en ontwikkeling' : 'Design and development' ?>
-            <a href="https://www.heidiulrich.nl" target="_blank">heidiulrich.nl</a>
+            <a href="https://www.prodeo.utwente.nl/contact/">Pro Deo Digicom</a>
         </section>
     </div>
 </footer>
