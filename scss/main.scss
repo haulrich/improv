@@ -354,7 +354,13 @@ body {
 							transition: background-color 0.2s;
 							display: flex;
 							flex-flow: column nowrap;
-							@include columns(30,45,100);
+							flex: 1 100%;
+							@media screen and (min-width: $breakpoint-md) {
+								flex: 1 45%;
+							}
+							@media screen and (min-width: $breakpoint-xl) {
+								flex: 0 30%;
+							}
 							a {
 								color: $white;
 								&:hover {

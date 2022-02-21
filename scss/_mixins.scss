@@ -11,11 +11,11 @@
   font-family: 'Font Awesome 5 Free', sans-serif;
 }
 @mixin columns($xl,$lg,$md) {
-  flex: 0 $xl#{'%'};
-  @media (max-width: $breakpoint-lg) {
-    flex: 1 $lg#{'%'};
+  flex: 1 $md+'%';
+  @media screen and (min-width: $breakpoint-md) {
+    flex: 1 $lg+'%';
   }
-  @media (max-width: $breakpoint-md) {
-    flex: 1 $md#{'%'};
+  @media screen and (min-width: $breakpoint-lg) {
+    flex: 0 $xl+'%';
   }
 }
