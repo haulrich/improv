@@ -20,7 +20,7 @@
             "logo": "https://www.prodeo.utwente.nl/logo.png"
         }
     </script>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v7.0&appId=1538696539739752&autoLogAppEvents=1" nonce="osBQol7B"></script>
+<!--    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/nl_NL/sdk.js#xfbml=1&version=v7.0&appId=1538696539739752&autoLogAppEvents=1" nonce="osBQol7B"></script>-->
     <?php dynamic_sidebar('scripts-header'); ?>
     <?php wp_head(); ?>
 </head>

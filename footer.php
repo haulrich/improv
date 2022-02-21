@@ -3,7 +3,7 @@
 <?php if(is_front_page()) : ?>
     <section class="container">
             <div id="instagram_feed"></div>
-            <script type="text/javascript">
+            <script type="text">
                 /*<![CDATA[*/
                 /*instagram-config7*/
                 (function() {

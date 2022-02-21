@@ -2,7 +2,7 @@
 function fb_parse_feed( $page_id, $no = 5 ) {
 
     // URL to the Facebook page's RSS feed.
-    $rss_url = 'http://www.facebook.com/feeds/page.php?id=' . $page_id . '&format=rss20';
+    $rss_url = 'https://www.facebook.com/feeds/page.php?id=' . $page_id . '&format=rss20';
 
     $curl = curl_init();
 
