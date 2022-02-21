@@ -1,30 +1,12 @@
     </div>
+    <?php if(is_front_page()) : ?>
+        <section class="container">
+                <div id="instagram_feed">
+                    <?php echo do_shortcode('[instagram-feed feed=1]'); ?>
+                </div>
+        </section>
+    <?php endif; ?>
 </main>
-<?php if(is_front_page()) : ?>
-    <section class="container">
-            <div id="instagram_feed"></div>
-            <script type="text">
-                /*<![CDATA[*/
-                /*instagram-config7*/
-                (function() {
-                    new InstagramFeed({
-                        'username': 'tsv.prodeo',
-                        'container': document.getElementById('instagram_feed'),
-                        'display_profile': 0,
-                        'display_biography': 0,
-                        'display_gallery': true,
-                        'display_igtv': false,
-                        'callback': null,
-                        'styling': true,
-                        'items': 5,
-                        'items_per_row': 1,
-                        'margin': 0.00
-                    });
-                })();
-                /*]]>*/
-            </script>
-    </section>
-<?php endif; ?>
 <footer class="container-fluid py-3">
     <div class="container d-flex flex-column flex-lg-row justify-content-lg-between">
         <section>
