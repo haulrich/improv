@@ -661,6 +661,31 @@ body main section.boardmembers article.boardmember > div{
   padding: 15px;
 }
 
+/*google drive plugin arrow fix*/
+.imagelightbox-arrow:before{
+  margin: auto;
+  margin-bottom: auto; 
+}
+.imagelightbox-arrow-right:before{
+  margin-left: auto;
+}
+.imagelightbox-arrow-left:before{
+  margin-right: auto; 
+}
+.imagelightbox-arrow{
+  width: 4em;
+  height: 4em;
+  vertical-align: middle;
+  display: flex!important;
+  position: fixed;
+  top: 50%;
+  padding: 0;
+  margin-top: -3.75em;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+}
+
 
 @media (max-width: 768px) {
   body header > div {
