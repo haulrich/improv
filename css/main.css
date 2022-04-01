@@ -253,9 +253,11 @@ body header.sticky-top.sticky, body header.sticky-top.sticky * {
     height: inherit;
     justify-content: flex-end;
   }
+  /*
   body header.sticky-top.sticky > div div.navhead nav.navbar .navbar-collapse ul {
     height: inherit;
   }
+  */
   body header.sticky-top.sticky > div div.navhead nav.navbar .navbar-collapse ul li {
     height: inherit;
     display: flex;
