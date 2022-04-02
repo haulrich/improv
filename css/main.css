@@ -607,6 +607,12 @@ body form.search-form label input.search-field:focus {
   border-radius: 3px;
   box-shadow: 0 0 10px rgb(0 0 0 / 50%);
 }
+.spotlight-instagram-feed{
+margin-bottom: 3rem;
+}
+.FeedLayout__wrapper{
+  border-radius: 3px;
+}
 
 /*board widgets*/
 .board-member-name{
