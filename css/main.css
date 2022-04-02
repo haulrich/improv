@@ -368,11 +368,14 @@ body.home {
 body.home main {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+
 body.home main section.content section.inner {
   width: 75%;
   font-size: clamp(11.5pt, 2vw, 1.5vw);
+  margin: 5rem 0 6rem 1rem;
   line-height: 150%;
-  margin: 0 0 2rem 2rem;
+
 }
 body.home main section.content section.blocks {
   display: flex;
@@ -606,6 +609,15 @@ body form.search-form label input.search-field:focus {
 #sb_instagram .sbi_photo{
   border-radius: 3px;
   box-shadow: 0 0 10px rgb(0 0 0 / 50%);
+}
+.spotlight-instagram-feed{
+margin-bottom: 3rem;
+}
+.FeedLayout__wrapper{
+  border-radius: 3px;
+}
+.instagram_feed{
+  padding-bottom: 1rem;
 }
 
 /*board widgets*/
