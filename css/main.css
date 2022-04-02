@@ -368,11 +368,14 @@ body.home {
 body.home main {
   background-color: rgba(0, 0, 0, 0.3);
 }
+
+
 body.home main section.content section.inner {
   width: 75%;
   font-size: clamp(11.5pt, 2vw, 1.5vw);
+  margin: 5rem 0 6rem 1rem;
   line-height: 150%;
-  margin: 0 0 2rem 2rem;
+
 }
 body.home main section.content section.blocks {
   display: flex;
@@ -612,6 +615,9 @@ margin-bottom: 3rem;
 }
 .FeedLayout__wrapper{
   border-radius: 3px;
+}
+.instagram_feed{
+  padding-bottom: 1rem;
 }
 
 /*board widgets*/
