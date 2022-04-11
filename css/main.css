@@ -643,16 +643,21 @@ body main section.boardmembers article.boardmember > div{
   text-decoration: none;
   color: white!important;
   border-radius: 15px;
-  border: 3px solid white;
+  /*border: 3px solid white;*/
+  border: 3px solid rgba(0, 0, 0, 0.0);
   outline: none;
   background-blend-mode: saturation;
   font-family: "Berlin sans fb", sans-serif;
   font-weight: 400;
   margin-top: auto;
+  background-color: #a01426;
 }
-.button-boardmember-contact:hover {
-background-color: rgba(0, 0, 0, 0.7);
+.button-boardmember-contact:hover{
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 3px solid white;
 }
+
+
 
 /*main page*/
 .button-call-to-action{
@@ -663,15 +668,22 @@ background-color: rgba(0, 0, 0, 0.7);
   text-align: center;
   text-decoration: none;
   color: white!important;
-  border-radius: 2px;
+  border-radius: 10px;
   /* border: 3px solid white; */
+  border: 3px solid rgba(0, 0, 0, 0.0);
   outline: none;
-  box-shadow: 0 0 10px rgb(0 0 0 / 10%);
-  background-color: #E8413A;
+ /* box-shadow: 0 0 10px rgb(0 0 0 / 10%); */
+ background-color: #a01426;
   font-family: "Berlin sans fb", sans-serif;
   font-weight: 400;
   font-size: 1.2rem;
 }
+
+.button-call-to-action:hover{
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 3px solid white;
+}
+
 .main-hero-text{
   margin-top: 0;
   margin-bottom: 1rem;
