@@ -287,7 +287,7 @@ body main {
   min-height: 100vh;
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
-  padding: 0 15px;
+  padding: 1px 15px;
 }
 body main section.content {
   padding: 2rem 0;
@@ -422,6 +422,7 @@ body section.content.documents {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  flex-direction: column;
 }
 body section.content.diensten article,
 body section.content.services article,
@@ -616,7 +617,7 @@ margin-bottom: 3rem;
 .FeedLayout__wrapper{
   border-radius: 3px;
 }
-.instagram_feed{
+#instagram_feed{
   padding-bottom: 1rem;
 }
 
@@ -649,6 +650,10 @@ body main section.boardmembers article.boardmember > div{
   font-weight: 400;
   margin-top: auto;
 }
+.button-boardmember-contact:hover {
+background-color: rgba(0, 0, 0, 0.7);
+}
+
 /*main page*/
 .button-call-to-action{
   display: inline-block;
@@ -677,14 +682,14 @@ body main section.boardmembers article.boardmember > div{
 
 /*google drive plugin arrow fix*/
 .imagelightbox-arrow:before{
-  margin: auto;
-  margin-bottom: auto; 
+  margin: auto!important;
+  margin-bottom: auto!important; 
 }
 .imagelightbox-arrow-right:before{
-  margin-left: auto;
+  margin-left: auto!important;
 }
 .imagelightbox-arrow-left:before{
-  margin-right: auto; 
+  margin-right: auto!important; 
 }
 .imagelightbox-arrow{
   width: 4em;
